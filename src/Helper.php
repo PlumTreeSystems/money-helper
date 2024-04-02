@@ -55,4 +55,19 @@ class Helper
         }
         return ((int)$exploded[0]) * 100;
     }
+
+    public static function formatCentsToCurrency(int $cents)
+    {
+        $cents = (string)$cents;
+        switch (strlen($cents)) {
+            case 0:
+                return 0;
+            case 1:
+                return "0.0" . $cents;
+            case 2:
+                return "0." . $cents;
+            default:
+                return substr($cents, 0, strlen($cents) - 2) . '.' . substr($cents, -2);
+        }
+    }
 }
