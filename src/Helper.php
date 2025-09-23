@@ -4,6 +4,38 @@ namespace MoneyHelper;
 
 class Helper
 {
+    const CURRENCY_CODE_GBP = 'GBP';
+    const CURRENCY_SYMBOL_GBP = '£';
+    const CURRENCY_CODE_EUR = 'EUR';
+    const CURRENCY_SYMBOL_EUR = '€';
+
+    private static $currencyCodeToSymbolMap = [
+        'GBP' => '£',
+        'EUR' => '€',
+        'PLN' => 'zł',  // Polish złoty
+        'DKK' => 'kr.', // Danish krone
+        'NOK' => 'kr',  // Norwegian krone
+        'SEK' => 'kr',  // Swedish krone
+        'CHF' => 'fr.', // Swiss franc
+        'RON' => 'lei', // Romanian leu
+    ];
+
+    private static $countryToCurrencyCodeMap = [
+        'GB' => 'GBP',
+        'IE' => 'EUR',
+        'FR' => 'EUR',
+        'DE' => 'EUR',
+        'IT' => 'EUR',
+        'ES' => 'EUR',
+        'PL' => 'PLN',
+        'RO' => 'RON',
+        'SK' => 'EUR',
+        'DK' => 'DKK',
+        'NO' => 'NOK',
+        'SE' => 'SEK',
+        'CH' => 'CHF',
+    ];
+
     public static function formatMoney($unformated)
     {
         return bcdiv((string)$unformated, 1, 2);
@@ -69,5 +101,15 @@ class Helper
             default:
                 return substr($cents, 0, strlen($cents) - 2) . '.' . substr($cents, -2);
         }
+    }
+
+    public static function getCurrencySymbolByCode(string $code): ?string
+    {
+        return self::$currencyCodeToSymbolMap[$code] ?? null;
+    }
+
+    public static function getCurrencyCodeByCountry(string $countryCode): ?string
+    {
+        return self::$countryToCurrencyCodeMap[$countryCode] ?? null;
     }
 }

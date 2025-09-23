@@ -2,7 +2,7 @@
     "name": "pts/money-helper",
     "description": "Library for Money Helper",
     "type": "library",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "require": {
         "php": "^7.4 || ^8.0",
         "ext-json": "*"
