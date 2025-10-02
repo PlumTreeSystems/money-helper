@@ -112,4 +112,14 @@ class Helper
     {
         return self::$countryToCurrencyCodeMap[$countryCode] ?? null;
     }
+
+    public static function formatMoneyCurrency(string $money, string $currencyCode, bool $full = true): string
+    {
+        return sprintf(
+            "%s%s%s",
+            self::getCurrencySymbolByCode($currencyCode),
+            $money,
+            $full ? " $currencyCode" : '',
+        );
+    }
 }
