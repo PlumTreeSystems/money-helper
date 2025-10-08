@@ -119,7 +119,7 @@ class Helper
             "%s%s%s%s",
             ($money < 0 ? '–' : ''),
             self::getCurrencySymbolByCode($currencyCode),
-            abs($money),
+            number_format(abs($money), 2),
             $full ? " $currencyCode" : '',
         );
     }
